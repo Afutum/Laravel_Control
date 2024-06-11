@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Barryvdh\Debugbar\Facades\Debugbar;
+use Barryvdh\Debugbar\Twig\Extension\Debug;
 use Illuminate\Http\Request;
 
 class PlayerController extends Controller
 {
-    public function player()
+    public function showPlayer(Request $request)
     {
         $players = [
             [
@@ -32,11 +34,12 @@ class PlayerController extends Controller
             ]
         ];
 
-        return view('accounts/players', ['players' => $players]);
-    }
+        DebugBar::error('エラーだよ');
 
-    public function showPlayer(Request $request)
-    {
-        return redirect('accounts/players');
+        if ($request->session()->exists('login')) {
+            return view('accounts/players', ['players' => $players]);
+        } else {
+            return redirect('/');
+        }
     }
 }

@@ -17,15 +17,14 @@
         </div>
 
         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li><a href="index.php?action=control" class="nav-link px-2">Home</a></li>
-            <li><a href="index.php?action=userList" class="nav-link px-2">ユーザー一覧</a></li>
-            <li><a href="index.php?action=player" class="nav-link px-2 link-secondary">プレイヤー一覧</a></li>
-            <li><a href="index.php?action=items" class="nav-link px-2">アイテム一覧</a></li>
-            <li><a href="index.php?action=personalItems" class="nav-link px-2">所持アイテム一覧</a></li>
+            <li><a href="index" class="nav-link px-2">ユーザー一覧</a></li>
+            <li><a href="showPlayer" class="nav-link px-2 link-secondary">プレイヤー一覧</a></li>
+            <li><a href="showItem" class="nav-link px-2">アイテム一覧</a></li>
+            <li><a href="showPersonalItem" class="nav-link px-2">所持アイテム一覧</a></li>
         </ul>
 
         <div class="col-md-3 text-end">
-            <button onclick="location.href='./?action=doLogout'">ログアウト</button>
+            <button onclick="location.href='dologout'">ログアウト</button>
         </div>
     </header>
 </div>

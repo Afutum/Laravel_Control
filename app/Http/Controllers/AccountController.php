@@ -60,12 +60,20 @@ class AccountController extends Controller
     public function dologin(Request $request)
     {
         if ($request['name'] === 'jobi' && $request['pass'] === 'jobi') {
+            // セッションに指定のキーで値を保存
+            $request->session()->put('login', true);
+
             return redirect('accounts/index');
         } else {
-            //$error = 'set';
-
-            // カンマ区切りで、複数のパラメータを渡せる
-            return view('accounts/login');
+            return redirect('/')->with(['errors' => ['ユーザー名・パスワードが間違っています。']]);
         }
+    }
+
+    public function dologout(Request $request)
+    {
+        // セッションから指定したデータを削除
+        $request->session()->forget('login');
+
+        return redirect('/');
     }
 }
