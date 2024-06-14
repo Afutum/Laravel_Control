@@ -50,30 +50,39 @@ class AccountController extends Controller
         // カンマ区切りで、複数のパラメータを渡せる
         return view('accounts/index', ['title' => $title, 'accounts' => $data]);
     }
-
+    
     public function login(Request $request)
     {
         return view('accounts/login');
     }
 
 
+    //******************
+    // ログイン処理
+    //******************
     public function dologin(Request $request)
     {
         if ($request['name'] === 'jobi' && $request['pass'] === 'jobi') {
+            // 名前とパスが一致している場合
             // セッションに指定のキーで値を保存
             $request->session()->put('login', true);
 
             return redirect('accounts/index');
         } else {
+            // 一致してない場合
             return redirect('/')->with(['errors' => ['ユーザー名・パスワードが間違っています。']]);
         }
     }
 
+    //********************
+    // ログアウト処理
+    //********************
     public function dologout(Request $request)
     {
         // セッションから指定したデータを削除
         $request->session()->forget('login');
 
+        // ログイン画面にリダイレクトする
         return redirect('/');
     }
 }

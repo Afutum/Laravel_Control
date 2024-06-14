@@ -8,8 +8,10 @@ use Illuminate\Http\Request;
 
 class PlayerController extends Controller
 {
+    // プレイヤー一覧表示処理
     public function showPlayer(Request $request)
     {
+        // プレイヤーのデータを連想配列で登録
         $players = [
             [
                 'id' => 1,
@@ -36,9 +38,12 @@ class PlayerController extends Controller
 
         DebugBar::error('エラーだよ');
 
+        // sessionにloginが含まれていたら
         if ($request->session()->exists('login')) {
+            // プレイヤーの情報を渡してviewを表示
             return view('accounts/players', ['players' => $players]);
         } else {
+            // 含まれていなかったらログイン画面を表示
             return redirect('/');
         }
     }
